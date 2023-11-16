@@ -1,0 +1,44 @@
+def intersection(lst1, lst2):
+    # Function to find the intersection of two lists
+    return list(set(lst1) & set(lst2))
+
+def difference(lst1, lst2):
+    # Function to find the difference of two lists
+    return list(set(lst1) - set(lst2))
+
+def both_sports(players_cricket, players_badminton):
+    # List of students who play both cricket and badminton
+    return intersection(players_cricket, players_badminton)
+
+def either_sport_not_both(players_cricket, players_badminton):
+    # List of students who play either cricket or badminton but not both
+    return difference(players_cricket, players_badminton) + difference(players_badminton, players_cricket)
+
+def neither_sport(players, players_cricket, players_badminton):
+    # Number of students who play neither cricket nor badminton
+    return len(difference(players, players_cricket + players_badminton))
+
+def cricket_and_football_not_badminton(players_cricket, players_football, players_badminton):
+    # Number of students who play cricket and football but not badminton
+    return len(intersection(intersection(players_cricket, players_football), difference(players_cricket, players_badminton)))
+
+
+# Sample data
+players_cricket = ["A1", "A2", "A3", "A4"]
+players_badminton = ["B1", "B2", "B3", "B4"]
+players_football = ["C1", "C2", "C3", "C4"]
+
+players = players_cricket + players_badminton + players_football
+
+# a) List of students who play both cricket and badminton
+print("Students who play both cricket and badminton:", both_sports(players_cricket, players_badminton))
+
+# b) List of students who play either cricket or badminton but not both
+print("Students who play either cricket or badminton but not both:", either_sport_not_both(players_cricket, players_badminton))
+
+# c) Number of students who play neither cricket nor badminton
+print("Number of students who play neither cricket nor badminton:", neither_sport(players, players_cricket, players_badminton))
+
+# d) Number of students who play cricket and football but not badminton
+print("Number of students who play cricket and football but not badminton:",
+      cricket_and_football_not_badminton(players_cricket, players_football, players_badminton))
